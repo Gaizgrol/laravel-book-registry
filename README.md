@@ -12,8 +12,6 @@
 
 📚 API Documentation
 
-📂 PostgreSQL Data
-
 🚧 Troubleshooting
 
 ---
@@ -45,9 +43,9 @@ Open your terminal in the root folder and type:
 ./run.sh
 ```
 
-This script will make sure to build your images and install all dependencies if you doesn't have a `vendor` folder yet _(first run only)_ or a populated database and will start all containers. In subsequent runs, it will skip the installation step and directly start all containers.
+This script will make sure to build your images, install all dependencies (if you doesn't have a `vendor` folder yet) and run all migrations. In subsequent runs, it will skip the installation step and directly start all containers.
 
-The API will be served and the queue worker will start in parallel.
+All migrations will be applied, the API will be served and the queue worker will start in parallel.
 
 To stop running containers, just type
 
@@ -107,10 +105,6 @@ Run the following command to start unit testing your application:
 ```sh
 ./tests.sh
 ```
-
-## 📂 PostgreSQL Data
-
-PostgreSQL data dump is available at `/postgres/backup/dump`. It automatically imports all information to the database if it is not populated yet, so you don't need to worry about migrating and seeding data.
 
 ## 🚧 Troubleshooting
 

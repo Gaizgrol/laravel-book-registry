@@ -51,7 +51,7 @@ class BookController extends Controller
                 return $book->toArray();
             },
             Book::where('title', 'ilike', "%{$titulo}%")
-                ->with('indices')
+                ->with(['indices', 'author'])
                 ->get()
                 ->all()
         );
