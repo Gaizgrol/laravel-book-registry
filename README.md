@@ -98,14 +98,6 @@ Register book.
 
 Schedule a job to export a book summary to a XML file.
 
-## 🧪 Unit/Functional Testing
-
-Run the following command to start unit testing your application:
-
-```sh
-./tests.sh
-```
-
 ## 🚧 Troubleshooting
 
 > Hint: This section covers only troubleshooting with Docker containers!
