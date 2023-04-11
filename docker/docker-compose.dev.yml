@@ -1,0 +1,56 @@
+name: laravel-book-project
+services:
+  backend:
+    container_name: laravel
+    build:
+      context: ../
+      dockerfile: docker/dockerfile.laravel.dev
+    volumes:
+      - ../laravel:/app
+    ports:
+      - 8000:8000
+    entrypoint: >
+      bash -c "
+        php artisan serve --host=0.0.0.0 &
+        php artisan queue:work
+      "
+    working_dir: /app
+    environment:
+      - APP_DEBUG=true
+      - APP_ENV=local
+      - DB_CONNECTION=pgsql
+      - DB_HOST=postgresql
+      - DB_PORT=5432
+      - DB_DATABASE=database
+      - DB_USERNAME=user
+      - DB_PASSWORD=pass
+      - QUEUE_CONNECTION=database
+    networks:
+      - inner-network
+
+  database:
+    container_name: postgresql
+    image: postgres:15.2-alpine
+    restart: always
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=pass
+      - POSTGRES_DB=database
+    ports:
+      - 5432:5432
+    volumes:
+      - ../postgres/data:/var/lib/postgresql/data
+    networks:
+      - inner-network
+
+  db-manager:
+    container_name: db-admin
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+    networks:
+      - inner-network
+
+networks:
+  inner-network:
