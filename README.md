@@ -1,4 +1,4 @@
-# 🐘 Laravel Book Project
+# 🐘 Laravel Book Registry
 
 ## Contents:
 
